@@ -1,71 +1,19 @@
-<?php
-session_start();
-
-require_once( '../Facebook/FacebookSession.php' );
-require_once( '../Facebook/FacebookRedirectLoginHelper.php' );
-require_once( '../Facebook/FacebookRequest.php' );
-require_once( '../Facebook/FacebookResponse.php' );
-require_once( '../Facebook/FacebookSDKException.php' );
-require_once( '../Facebook/FacebookRequestException.php' );
-require_once( '../Facebook/FacebookAuthorizationException.php' );
-require_once( '../Facebook/GraphObject.php' );
-require_once( '../Facebook/GraphUser.php' );
-require_once( '../Facebook/GraphSessionInfo.php' );
-
-use Facebook\FacebookSession;
-use Facebook\FacebookRedirectLoginHelper;
-use Facebook\FacebookRequest;
-use Facebook\FacebookResponse;
-use Facebook\FacebookSDKException;
-use Facebook\FacebookRequestException;
-use Facebook\FacebookAuthorizationException;
-use Facebook\GraphObject;
-use Facebook\GraphUser;
-use Facebook\GraphSessionInfo;
-
-$id = '696921913720819';
-$secret = 'dbeeb743f2808522f4bef123090e6024';
-
-FacebookSession::setDefaultApplication($id, $secret);
-
-$helper = new FacebookRedirectLoginHelper('http://lykpic.com/wordgame/index.php');
-
-try{
-	$session = $helper->getSessionFromRedirect();
-}catch(Exception $e){
-	
-}
-
-if(isset($_SESSION['token'])){
-	$session = new FacebookSession($_SESSION['token']);
-	
-	try{
-		$session->Validate($id, $secret);
-	}catch(FacebookAuthorizationException $e){
-		$session = '';
-	}
-}
-?>
-
-
-
-
 <html>
     <head>
         <title>words game</title>
         <!-- Bootstrap -->
-        <link href="../style/bootstrap.css" rel="stylesheet">
-        <link href="../style/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="../style/bootstrap-social-buttons/bootstrap-social.css" rel="stylesheet">
-        <link href="../style/bootstrap-social-buttons/font-awesome.css" rel="stylesheet">
-        <link rel="../stylesheet" href="style/font-awesome/css/font-awesome.css">
-        <link href="../style/custom.css" rel="stylesheet">
+        <link href="style/bootstrap.css" rel="stylesheet">
+        <link href="style/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="style/bootstrap-social-buttons/bootstrap-social.css" rel="stylesheet">
+        <link href="style/bootstrap-social-buttons/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="style/font-awesome/css/font-awesome.css">
+        <link href="style/custom.css" rel="stylesheet">
         <link rel='stylesheet' href='words.css'>
         <script src="script.js"></script>
         <script src="timer.js"></script>
         <style>
             body{
-                background:#8ec1da url(../images/2.jpg) no-repeat center center fixed;
+                background:#8ec1da url(images/2.jpg) no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
@@ -76,8 +24,7 @@ if(isset($_SESSION['token'])){
     </head>
     <body>
 
-<?php 
-
+<!--
 if(isset($session)){
 	$_SESSION['token'] = $session->getToken();
    
@@ -115,7 +62,7 @@ else{
 ';
 }
 ?>
-
+-->
         <div class="custom-container row">
             <div class="col-sm-6 game">
                 <button id='start' class="btn btn-warning">Start Game</button>
